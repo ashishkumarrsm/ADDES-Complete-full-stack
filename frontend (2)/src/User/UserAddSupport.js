@@ -190,17 +190,17 @@ export default function UserAddSupport() {
 
 {message && <SuccessAlert message={message} />}
 {error && <ErrorAlert error={error} />}
-<div className="m-3 p-4 relative z-10 bg-[#0b90c280]">
+<div className="m-3 p-4 relative z-10 bg-gray-300/50 text-white">
 <div className="absolute inset-0 bg-black opacity-20"></div>
   <div className="flex-col items-center justify-between w-full mb-3 lg:flex md:flex-row">
     <div className="">
-      <h3 className="text-lg font-semibold text-gray-200 ">Get Support</h3>
-      <p className="text-lg text-slate-300">Overview of the current Support.</p>
+      <h3 className="text-lg font-semibold  ">Get Support</h3>
+      <p className="text-lg ">Overview of the current Support.</p>
     </div>
     <div className=" flex flex-col items-start gap-3 mt-3 md:mt-0 md:flex-row md:items-center">
       <div className="relative w-full md:w-72">
         <input
-           className="w-full h-10 py-2 pl-3 text-lg transition duration-200 border rounded shadow-sm text-gray-100 bg-[#1a8ab280] pr-11 placeholder:text-slate-100  border-slate-200 ease focus:outline-none focus:border-slate-400 hover:border-slate-100 focus:shadow-md"
+           className="w-full h-10 py-2 pl-3 text-lg transition duration-200 border rounded shadow-sm text-gray-900  pr-11 placeholder:text-slate-900  border-slate-200 ease focus:outline-none focus:border-slate-400 hover:border-slate-100 focus:shadow-md"
           placeholder="Search..."
         />
         <button
@@ -226,7 +226,7 @@ export default function UserAddSupport() {
       <button
         type="button"
         onClick={() => setOpenModel(true)}
-        className="w-full px-3 py-2 text-lg font-semibold text-center text-gray-100 bg-[#1a8ab280] rounded shadow-sm md:w-auto hover:bg-blue-900 focus:outline-none"
+        className="w-full px-3 py-2 text-lg font-semibold text-center text-white bg-blue-500 rounded shadow-sm md:w-auto hover:bg-blue-700 focus:outline-none"
       >
         Support
       </button>
@@ -235,7 +235,7 @@ export default function UserAddSupport() {
 
   <div className="relative flex flex-col w-full h-full mb-4 overflow-x-auto text-gray-200 shadow-md bg-clip-border">
     <table className="w-full min-w-full text-left border table-auto text-gray-100">
-      <thead className="text-gray-100 bg-black">
+      <thead className="text-gray-100 bg-blue-500">
         <tr>
           <th className="p-4 text-base font-normal leading-none border-b border-slate-200">ID</th>
           <th className="p-4 text-base font-normal leading-none border-b border-slate-200">Email</th>
@@ -245,10 +245,10 @@ export default function UserAddSupport() {
           {/* <th className="w-16 p-4 text-base font-normal leading-none text-center text-white border-b border-slate-200">Action</th> */}
         </tr>
       </thead>
-      <tbody className="text-gray-100 bg-[#01415859]">
+      <tbody className="text-gray-900 bg-white">
         {allSupportMessage?.length > 0 ? (
         allSupportMessage?.map((item, index) => (
-          <tr key={index} className="text-gray-100 even:bg-[#7e66c5b3] even:text:white">
+          <tr key={index} className="text-gray-900 even:bg-gray-300/50 even:text-gray-900">
             <td className="py-4 pl-4 pr-3 text-base font-medium whitespace-nowrap">{item?.id}</td>
             <td className="px-3 py-4 text-base whitespace-nowrap">{item?.email}</td>
             <td className="px-3 py-4 text-base whitespace-nowrap">{item?.title}</td>
@@ -271,7 +271,7 @@ export default function UserAddSupport() {
           <tr>
               <td
                 colSpan={6} 
-                className="py-4 text-base font-medium text-center  whitespace-nowrap text-white bg-[#4b1725ab]"
+                className="py-4 text-base font-medium text-center  whitespace-nowrap text-gray-900 bg-gray-300/50"
               >
                 No data available
               </td>

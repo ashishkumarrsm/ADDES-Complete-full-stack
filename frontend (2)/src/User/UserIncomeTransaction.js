@@ -274,8 +274,8 @@ export default function UserIncomeTransaction() {
     <div className="p-6 rounded-lg shadow-lg bg-white/50">
       <div className="flex flex-col justify-between items-center mb-4 sm:flex-row">
         <div>
-          <h3 className="text-2xl font-bold text-gray-900">Transaction History</h3>
-          <p className="text-gray-900">Detailed overview of your transactions</p>
+          <h3 className="text-2xl font-bold text-white">Transaction History</h3>
+          <p className="text-white">Detailed overview of your transactions</p>
         </div>
         <div className="relative mt-3 sm:mt-0">
           <input

@@ -53,6 +53,7 @@ import { MdMessage } from "react-icons/md";
 import UserAnimatedClock from "./UserAnimatedClock ";
 import UserNotificationPanel from "./UserNotificationPanel";
 import { FiGift, FiShield, FiBox, FiSend } from "react-icons/fi";
+import UserPlaneCard from "./UserPlaneCard";
 
 const UserDashboard = () => {
   const dispatch = useDispatch();
@@ -232,6 +233,18 @@ const UserDashboard = () => {
   };
 
   const stat = [
+    // {
+    //   id: 7,
+    //   value: `$ ${totalWithdrawals}`,
+    //   description: "Total Withdrawal",
+    //   upadtePlan: "Copy Link",
+    //   percentage: "20",
+    //   borderColor: "border-indigo-500 ",
+    //   icon: CursorArrowRaysIcon,
+    //   bgColor: "bg-indigo-500",
+    //   iconBgColor: "bg-indigo-700",
+    //   gredient: "border-t bg-gradient-to-r from-indigo-900 to-gray-900",
+    // },
     {
       id: 8,
       value: `$${totalBusiness}`,
@@ -246,11 +259,10 @@ const UserDashboard = () => {
     },
     {
       id: 9,
-      value: `${
-        topGenerations?.[0]?.totalBusiness
-          ? "$" + topGenerations?.[0]?.totalBusiness
-          : 0
-      }`,
+      value: `${topGenerations?.[0]?.totalBusiness
+        ? "$" + topGenerations?.[0]?.totalBusiness
+        : 0
+        }`,
       description: "Team A",
       percentage: "10",
       // upadtePlan: "Copy Link",
@@ -263,11 +275,10 @@ const UserDashboard = () => {
     },
     {
       id: "10",
-      value: `${
-        topGenerations?.[1]?.totalBusiness
-          ? "$" + topGenerations?.[1]?.totalBusiness
-          : 0
-      }`,
+      value: `${topGenerations?.[1]?.totalBusiness
+        ? "$" + topGenerations?.[1]?.totalBusiness
+        : 0
+        }`,
       description: "Team B",
       percentage: "13",
       // upadtePlan: "Copy Link",
@@ -280,11 +291,10 @@ const UserDashboard = () => {
     },
     {
       id: 11,
-      value: `${
-        topGenerations?.[2]?.totalBusiness
-          ? "$" + topGenerations?.[2]?.totalBusiness
-          : 0
-      } Business`,
+      value: `${topGenerations?.[2]?.totalBusiness
+        ? "$" + topGenerations?.[2]?.totalBusiness
+        : 0
+        } Business`,
       description: "Team Others",
       percentage: "48",
       icon: CursorArrowRaysIcon,
@@ -322,7 +332,131 @@ const UserDashboard = () => {
       iconBgColor: "bg-yellow-300",
       gredient: "border-t bg-gradient-to-r from-pink-700 to-pink-700",
     },
-    //
+    {
+      id: 5,
+
+      description: "Total Salary",
+      value: `${singleuser?.total_salary}`,
+      upadtePlan: "Add More",
+      borderColor: "border-amber-500 ",
+      href: "/user/salary",
+      percentage: "25",
+      icon: CursorArrowRaysIcon,
+      bgColor: "bg-amber-500",
+      iconBgColor: "bg-amber-300",
+      gredient: "border-t bg-gradient-to-r from-amber-700 to-amber-700",
+    },
+    {
+      id: 5,
+
+      description: "Total Reward",
+      value: `${singleuser?.reward} `,
+      upadtePlan: "Add More",
+      borderColor: "border-teal-500 ",
+      percentage: "25",
+      icon: CursorArrowRaysIcon,
+      bgColor: "bg-teal-500",
+      iconBgColor: "bg-teal-300",
+      href: "#",
+      gredient: "border-t bg-gradient-to-r from-teal-700 to-teal-700",
+    },
+    {
+      id: 1,
+      description: "Total Direct",
+      value: `${totalDirectActiveMembers + totalDirectInactiveMembers} Member`,
+
+      borderColor: "border-blue-200 ",
+      icon: UserCheck,
+      bgColor: "bg-blue-500",
+      iconBgColor: "bg-blue-400",
+      gredient: "bg-gradient-to-br from-purple-800 to-indigo-700",
+      percentage: "45",
+      href: "/user/directmember",
+    },
+    {
+      id: 2,
+      description: "Active Sponser",
+      value: `${totalDirectActiveMembers} Member`,
+      borderColor: "border-green-100 ",
+      icon: Activity,
+      bgColor: "bg-green-500",
+      iconBgColor: "bg-green-400",
+      gredient: "bg-gradient-to-br from-blue-700 to-cyan-800",
+      percentage: "25",
+      href: "/user/directmember",
+    },
+    {
+      id: 3,
+      value: `$ ${singleuser?.level_income}` || 0,
+      description: "Level Income",
+
+      borderColor: "border-green-100 ",
+      icon: TrendingUp,
+      bgColor: "bg-green-500",
+      iconBgColor: "bg-teal-400",
+      gredient: "bg-gradient-to-br from-teal-700 to-teal-900 ",
+      percentage: "25",
+      href: "/user/transaction/invest_level_transaction/invest",
+    },
+    {
+      id: 4,
+      value: `$ ${totalWithdrawals}`,
+      description: "Total Withdrawal",
+      upadtePlan: "Need Support",
+      borderColor: "border-red-800 ",
+      icon: Wallet,
+      bgColor: "bg-red-500",
+      iconBgColor: "bg-red-300",
+      gredient: "bg-gradient-to-br from-pink-800 to-rose-900",
+      percentage: "55",
+      href: "/user/addwithdrawal",
+    },
+    {
+      value: `$ ${singleuser?.active_plan}`,
+      description: "Active Package",
+      icon: Package,
+      btnColor: "bg-purple-700 hover:bg-blue-600 shadow-blue-600",
+      bgColor: "bg-purple-600",
+      percentage: "+22%",
+      iconColor: "text-purple-500",
+      href: "/user/plan",
+      gredient: "bg-gradient-to-r from-[#182a91] to-[#751bc0] shadow-lg ",
+    },
+
+    {
+      value: `$ ${singleuser?.direct_income}`,
+      description: "Direct",
+      bgColor: "bg-blue-600 border border-blue-600",
+      iconColor: "text-blue-500",
+      btnColor: "bg-blue-700 hover:bg-purple-600 shadow-purple-600",
+      percentage: "66",
+      icon: Handshake,
+      href: "/user/directmember",
+      gredient: "bg-gradient-to-r from-[#182a91] to-blue-700 shadow-lg ",
+    },
+    {
+      value: `$ ${singleuser?.roi_income}`,
+      description: "ROI",
+      initials: "IS",
+      icon: TrendingUp,
+      bgColor: "bg-red-600",
+      iconColor: "text-red-500",
+      btnColor: "bg-red-700 hover:bg-green-600 shadow-green-600",
+      percentage: "99",
+      href: "/user/transaction/roi_transaction/Invest",
+      gredient: "bg-gradient-to-r from-[#182a91] to-red-700 shadow-lg ",
+    },
+    {
+      value: "Members Tree",
+      description: `${totalDirectInactiveMembers} Member`,
+      href: "/user/referraltree",
+      icon: Info,
+      bgColor: "bg-green-600",
+      btnColor: "bg-green-700 hover:bg-red-600 shadow-indigo-600",
+      iconColor: "text-green-500",
+      percentage: "+3%",
+      gredient: "bg-gradient-to-r from-[#182a91] to-green-700 shadow-lg ",
+    },
   ];
 
   const userIncomeData = [
@@ -365,130 +499,54 @@ const UserDashboard = () => {
         {/* <div className="mb-6">
           <UserSlider />
         </div> */}
-        <div className="pt-3 mx-auto max-w-7xl">
+        <div className="p-4 w-full  rounded-md bg-slate-300/50 sm:px-6 lg:px-8">
           <UserNotificationPanel />
         </div>
-        <div className="mx-auto max-w-7xl">
-          <UserAnimatedClock />
-        </div>
+        {/* <div className="p-4 w-full  rounded-md bg-slate-300/50 sm:px-6 lg:px-8">
+         <UserAnimatedClock/> 
+        </div> */}
 
-        <div>
+        <div className="p-4 w-full  rounded-md bg-slate-300/50 sm:px-6 lg:px-8">
           <UserData />
         </div>
 
-        {/* new section  */}
-
-        <div className="p-4 mx-auto max-w-7xl bg-gradient-to-br from-gray-50 to-white rounded-xl sm:px-6 lg:px-8 sm:p-6">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {/* RenatusPRO Card */}
-            <motion.div
-              className="p-4 bg-white rounded-xl border border-gray-100 shadow-lg sm:p-6"
-              whileHover={{ y: -5 }}
-              transition={{ duration: 0.2 }}
-            >
-              <div className="flex gap-3 items-center mb-4">
-                <div className="p-2 bg-purple-100 rounded-lg">
-                  <FiShield className="w-5 h-5 text-purple-600 sm:w-6 sm:h-6" />
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 sm:text-xl">
-                  RenatusPRO
-                </h3>
-              </div>
-              <p className="mb-4 text-sm text-gray-600 sm:text-base sm:mb-5">
-                Maintain a respectful community environment with single account
-                policy.
-              </p>
-              <button className="py-2 w-full text-sm text-white bg-purple-600 rounded-lg hover:bg-purple-700 sm:text-base">
-                Community Guidelines
-              </button>
-            </motion.div>
-
-            {/* Ravenu Card */}
-            <motion.div
-              className="p-4 bg-white rounded-xl border border-gray-100 shadow-lg sm:p-6"
-              whileHover={{ y: -5 }}
-              transition={{ duration: 0.2 }}
-            >
-              <div className="flex gap-3 items-center mb-4">
-                <div className="p-2 bg-green-100 rounded-lg">
-                  <FiBox className="w-5 h-5 text-green-600 sm:w-6 sm:h-6" />
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 sm:text-xl">
-                  Ravenu
-                </h3>
-              </div>
-              <p className="mb-4 text-sm text-gray-600 sm:text-base sm:mb-5">
-                Access advanced trading tools and exclusive market insights.
-              </p>
-              <button className="py-2 w-full text-sm text-white bg-green-600 rounded-lg hover:bg-green-700 sm:text-base">
-                Explore Features
-              </button>
-            </motion.div>
-
-            {/* Telegram Ravenu Card */}
-            <motion.div
-              className="p-4 bg-white rounded-xl border border-gray-100 shadow-lg sm:p-6"
-              whileHover={{ y: -5 }}
-              transition={{ duration: 0.2 }}
-            >
-              <div className="flex gap-3 items-center mb-4">
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  <FiSend className="w-5 h-5 text-blue-600 sm:w-6 sm:h-6" />
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 sm:text-xl">
-                  Telegram Ravenu
-                </h3>
-              </div>
-              <p className="mb-4 text-sm text-gray-600 sm:text-base sm:mb-5">
-                Join our Telegram community for real-time updates and support.
-              </p>
-              <button className="py-2 w-full text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700 sm:text-base">
-                Join Channel
-              </button>
-            </motion.div>
-          </div>
-        </div>
-
         {/* Invite or reffral section */}
-        <div className="p-4 mx-auto max-w-7xl rounded-md bg-white/50 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-6 px-4 md:grid-cols-2">
-            {/* Left Side - Invite & Earn + Income Slider */}
-            <div className="space-y-6">
+        <div className="p-3 sm:p-4 w-full  rounded-md bg-slate-300/50 sm:px-4 md:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-12 space-x-4 md:grid-cols-1 space-y-4 grid-cols-1">
+
+            {/* left  */}
+            <div className="space-y-4 sm:space-y-6 flex flex-col items-center justify-center col-span-5">
               {/* Invite & Earn Section */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="p-6 bg-white rounded-lg border shadow-md"
+                className="p-4 sm:p-6 w-full bg-gradient-to-b from-indigo-900 to-purple-900 rounded-lg sm:rounded-xl border border-blue-100 shadow-lg text-white"
               >
-                <h2 className="flex gap-2 items-center mb-3 text-lg font-semibold text-gray-900 md:text-xl">
-                  Invite & Earn 🎉
+                <h2 className="flex gap-2 items-center mb-2 sm:mb-3 text-base sm:text-lg font-bold md:text-xl">
+                  Invite & Earn <span className="text-lg sm:text-xl">🎉</span>
                 </h2>
-                <p className="mb-4 text-sm text-gray-900 md:text-base">
+                <p className="mb-3 sm:mb-4 text-xs sm:text-sm md:text-base">
                   Share your referral code with friends and earn rewards when
                   they sign up!
                 </p>
-                <div className="flex items-center p-2 rounded-lg border shadow-md bg-gray-100/50">
+                <div className="flex items-center p-1 sm:p-2 rounded-lg border border-indigo-200 shadow-md bg-white">
                   <input
                     type="text"
                     value={referralCode}
                     readOnly
-                    className="p-2 w-full text-base font-medium bg-transparent outline-none"
+                    className="p-1 sm:p-2 w-full text-sm sm:text-base font-medium bg-transparent outline-none text-indigo-900"
                   />
                   <button
                     onClick={handleCopy}
-                    className="flex gap-2 items-center p-2 rounded-md shadow-md transition-all duration-300 bg-gray-300/50 hover:bg-gray-400/50"
+                    className="flex gap-1 sm:gap-2 items-center p-1 sm:p-2 rounded-md shadow-md transition-all duration-300 bg-indigo-500 hover:bg-indigo-600"
                   >
                     {isCopied ? (
-                      <FiCheck className="w-4 h-5 text-green-400" />
+                      <FiCheck className="w-3 h-3 sm:w-4 sm:h-5 text-white" />
                     ) : (
-                      <FiCopy className="w-4 h-5 text-gray-900" />
+                      <FiCopy className="w-3 h-3 sm:w-4 sm:h-5 text-white" />
                     )}
-                    <span
-                      className={`text-sm ${
-                        isCopied ? "text-green-500" : "text-gray-900"
-                      }`}
-                    >
+                    <span className="text-xs sm:text-sm text-white">
                       {isCopied ? "Copied" : "Copy"}
                     </span>
                   </button>
@@ -501,7 +559,8 @@ const UserDashboard = () => {
                   modules={[Navigation, Pagination, Autoplay]}
                   autoplay={{ delay: 5000 }}
                   loop={true}
-                  className="rounded-lg"
+                  pagination={{ clickable: true }}
+                  className="rounded-lg sm:rounded-xl overflow-hidden"
                 >
                   {userIncomeData.map((user, index) => (
                     <SwiperSlide key={index}>
@@ -509,25 +568,25 @@ const UserDashboard = () => {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
-                        whileHover={{ scale: 1.05 }}
-                        className="flex flex-col items-center p-6 bg-white rounded-lg border shadow-lg md:flex-row shadow-gray-400"
+                        whileHover={{ scale: 1.02 }}
+                        className="flex flex-col items-center p-3 sm:p-6 bg-gradient-to-b from-indigo-900 to-purple-900 text-white rounded-lg sm:rounded-xl border border-purple-100 shadow-lg md:flex-row"
                       >
                         {/* React Icon on Left */}
-                        <div className="flex justify-center items-center w-16 h-16 bg-gray-100 rounded-full shadow-md md:w-20 md:h-20">
+                        <div className="flex justify-center items-center w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-b from-indigo-900 to-purple-900 border border-white rounded-full shadow-md md:w-20 md:h-20 text-white">
                           {user.icon}
                         </div>
 
                         {/* User Income Details */}
-                        <div className="mt-3 text-center text-gray-900 md:mt-0 md:ml-5 md:text-left">
-                          <h2 className="text-lg font-semibold md:text-2xl">
+                        <div className="mt-2 sm:mt-3 text-center md:mt-0 md:ml-5 md:text-left">
+                          <h2 className="text-base sm:text-lg font-bold md:text-2xl">
                             {user.username}
                           </h2>
-                          <p className="text-base font-bold md:text-lg">
+                          <p className="text-sm sm:text-base font-bold md:text-lg">
                             {user.income}
                           </p>
-                          <p className="mt-1 text-sm opacity-90 md:text-base">
+                          <p className="mt-1 text-xs sm:text-sm opacity-90 md:text-base">
                             Earned on{" "}
-                            <span className="font-medium">{user.platform}</span>
+                            <span className="font-medium text-blue-500">{user.platform}</span>
                           </p>
                         </div>
 
@@ -536,49 +595,91 @@ const UserDashboard = () => {
                           initial={{ scale: 0.9, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
                           transition={{ delay: 0.3, duration: 0.6 }}
-                          className="mt-4 md:mt-0 md:ml-auto"
+                          className="mt-3 sm:mt-4 md:mt-0 md:ml-auto"
                         >
-                          <img
-                            src={user.image}
-                            alt={user.username}
-                            className="w-20 h-20 md:w-28 md:h-28"
-                          />
+                          <div className="p-1 sm:p-2 rounded-full bg-white/50 shadow-md">
+                            <img
+                              src={user.image}
+                              alt={user.username}
+                              className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full object-cover"
+                            />
+                          </div>
                         </motion.div>
                       </motion.div>
                     </SwiperSlide>
                   ))}
                 </Swiper>
               </div>
+
+
+
+              <div className="relative group flex items-center justify-center p-4 sm:p-6 bg-gradient-to-b from-indigo-900 to-purple-900 rounded-lg sm:rounded-xl border border-blue-100 shadow-lg col-span-7">
+                {/* Main Image */}
+                <img
+                  src="https://img.freepik.com/premium-photo/uptrend-market-strategies-insights-navigating-maximize-gains-minimize-risks_960330-11481.jpg?uid=R90634854&ga=GA1.1.1673403856.1719407260&semt=ais_hybrid&w=740"
+                  alt="Invite Illustration"
+                  className="w-full h-auto rounded-lg sm:rounded-xl object-cover transition-all duration-500 group-hover:scale-105"
+                />
+
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg sm:rounded-xl">
+                  <div className="text-center text-white">
+                    <h3 className="text-lg sm:text-xl font-bold mb-2">Refer and Rise 🚀</h3>
+                    <p className="text-sm sm:text-base w-96">Earn exciting rewards by inviting your friends!  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo enim at, dolorum, consectetur officiis tempora est a maxime nulla quam, officia odit sit laboriosam numquam ipsa accusamus assumenda atque laborum.</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Right Side - RenatusPRO Card */}
-            <div className="flex flex-col justify-center items-center p-6 text-gray-900 bg-white rounded-lg shadow-md">
-              <h2 className="mb-3 text-lg font-bold md:text-xl">RenatusPRO</h2>
-              <p className="mb-4 text-sm text-center md:text-base">
-                We urge all members of our community to adhere to good
-                commenting standards and contribute positively to the RenatusPRO
-                community. Let us work together to maintain a respectful and
-                supportive community environment. Furthermore, every user should
-                only have one RenatusPRO account.
-              </p>
-              <button className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md transition-all md:text-base hover:bg-blue-600">
-                Contact Us →
-              </button>
+            {/* Right Side */}
+            <div className="relative group  space-y-4  sm:p-6 bg-gradient-to-b from-indigo-900 to-purple-900 px-5 rounded-lg sm:rounded-xl border border-purple-100 shadow-lg overflow-hidden col-span-7">
+              <UserPlaneCard />
+
+
+              <div className="items-center flex flex-col justify-center gap-3">
+                <p className="text-white font-bold text-center">AdToFuture is a digital platform that lets you earn money just by watching ads. We believe that your time and attention have value, so instead of watching ads for free, we give you the chance to earn from it. With easy-to-choose packages and daily earnings, anyone can start making passive income from the comfort of their home.</p>
+                <button className="border  p-2  text-white bg-gradient-to-b to-indigo-900 from-purple-900 rounded-md hover:bg-gradient-to-b hover:from-indigo-900 hover:to-purple-900 ">click me </button>
+              </div>
             </div>
+
           </div>
         </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         {/* carde section */}
 
-        <div className="p-4 mx-auto max-w-7xl rounded-md bg-white/50 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
+        <div className="p-4 w-full  rounded-md bg-slate-300/50 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {stat.map((item, i) => (
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0, ease: "easeInOut" }}
-                className="flex relative flex-col justify-between p-6 bg-white rounded-xl shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                className="flex relative flex-col justify-between p-6 bg-gradient-to-b from-indigo-900 to-purple-900 text-white rounded-xl shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl"
               >
                 {/* Neon Border Animation */}
                 <motion.div
@@ -604,10 +705,10 @@ const UserDashboard = () => {
 
                 {/* Content Section */}
                 <div className="relative z-10 text-left">
-                  <h3 className="text-3xl font-bold text-gray-900">
+                  <h3 className="text-3xl font-bold ">
                     {item.value}
                   </h3>
-                  <p className="mt-2 text-lg text-gray-900">
+                  <p className="mt-2 text-lg ">
                     {item.description}
                   </p>
                 </div>
@@ -617,14 +718,16 @@ const UserDashboard = () => {
         </div>
       </div>
 
-      <div className="h-[60px]"></div>
+
+
+
     </>
   );
 };
 
 export default UserDashboard;
 
-// <div className="relative z-10 mx-auto max-w-7xl text-gray-900">
+// <div className="relative z-10 w-full  text-gray-900">
 //         <div className="absolute inset-0 opacity-30 z-5"></div>
 //         <motion.div
 //           initial="hidden"
@@ -946,3 +1049,82 @@ export default UserDashboard;
 //   {/* Hover Overlay */}
 //   <div className="absolute inset-0 rounded-xl opacity-0 transition-all duration-300 bg-black/10 hover:opacity-20"></div>
 // </motion.div>
+
+
+
+
+
+
+
+
+
+// {/* <div className="p-4 w-full  rounded-md bg-slate-300/50 sm:px-6 lg:px-8">
+// <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+//   {/* RenatusPRO Card */}
+//   <motion.div
+//     className="p-4 bg-gradient-to-b from-indigo-900 to-purple-900  text-white rounded-xl border border-gray-100 shadow-lg sm:p-6"
+//     whileHover={{ y: -5 }}
+//     transition={{ duration: 0.2 }}
+//   >
+//     <div className="flex gap-3 items-center mb-4">
+//       <div className="p-2 bg-purple-100 rounded-lg">
+//         <FiShield className="w-5 h-5 text-purple-600 sm:w-6 sm:h-6" />
+//       </div>
+//       <h3 className="text-lg font-bold  sm:text-xl">
+//         RenatusPRO
+//       </h3>
+//     </div>
+//     <p className="mb-4 text-sm  sm:text-base sm:mb-5">
+//       Maintain a respectful community environment with single account
+//       policy.
+//     </p>
+//     <button className="py-2 w-full text-sm text-white bg-purple-600 rounded-lg hover:bg-purple-700 sm:text-base">
+//       Community Guidelines
+//     </button>
+//   </motion.div>
+
+//   {/* Ravenu Card */}
+//   <motion.div
+//     className="p-4 bg-gradient-to-b from-indigo-900 to-purple-900  text-white rounded-xl border border-gray-100 shadow-lg sm:p-6"
+//     whileHover={{ y: -5 }}
+//     transition={{ duration: 0.2 }}
+//   >
+//     <div className="flex gap-3 items-center mb-4">
+//       <div className="p-2 bg-green-100 rounded-lg">
+//         <FiBox className="w-5 h-5 text-green-600 sm:w-6 sm:h-6" />
+//       </div>
+//       <h3 className="text-lg font-bold  sm:text-xl">
+//         Ravenu
+//       </h3>
+//     </div>
+//     <p className="mb-4 text-sm  sm:text-base sm:mb-5">
+//       Access advanced trading tools and exclusive market insights.
+//     </p>
+//     <button className="py-2 w-full text-sm text-white bg-green-600 rounded-lg hover:bg-green-700 sm:text-base">
+//       Explore Features
+//     </button>
+//   </motion.div>
+
+//   {/* Telegram Ravenu Card */}
+//   <motion.div
+//     className="p-4 bg-gradient-to-b from-indigo-900 to-purple-900  text-white rounded-xl border border-gray-100 shadow-lg sm:p-6"
+//     whileHover={{ y: -5 }}
+//     transition={{ duration: 0.2 }}
+//   >
+//     <div className="flex gap-3 items-center mb-4">
+//       <div className="p-2 bg-blue-100 rounded-lg">
+//         <FiSend className="w-5 h-5 text-blue-600 sm:w-6 sm:h-6" />
+//       </div>
+//       <h3 className="text-lg font-bold  sm:text-xl">
+//         Telegram Ravenu
+//       </h3>
+//     </div>
+//     <p className="mb-4 text-sm  sm:text-base sm:mb-5">
+//       Join our Telegram community for real-time updates and support.
+//     </p>
+//     <button className="py-2 w-full text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700 sm:text-base">
+//       Join Channel
+//     </button>
+//   </motion.div>
+// </div>
+// </div> */}

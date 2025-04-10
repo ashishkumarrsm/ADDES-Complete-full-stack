@@ -81,7 +81,7 @@ const UserKycCharge = () => {
           className="flex justify-center w-full md:w-1/3"
         >
           <img
-            src="https://pathtoprogresss.com/user/images//415759.jpeg" // Replace this with your real QR code image
+            src="https://img.freepik.com/free-vector/characters-scanning-qr-codes-their-phones_23-2148616039.jpg?uid=R90634854&ga=GA1.1.1673403856.1719407260&semt=ais_hybrid&w=740" // Replace this with your real QR code image
             alt="QR Code"
             className="rounded-xl shadow-md"
           />

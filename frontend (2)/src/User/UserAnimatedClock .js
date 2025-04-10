@@ -32,12 +32,12 @@ const UserCountdownTimer = () => {
   }, []);
 
   return (
-    <div className="p-5 rounded-lg shadow-lg bg-white/50">
+    <div className="p-5 rounded-lg  flex flex-col items-center justify-center text-white ">
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
-        className="flex flex-col justify-center items-center p-6 w-full bg-white rounded-lg shadow-lg"
+        className="flex flex-col justify-center items-center p-6 w-full "
       >
         {/* Animated Clock Icon */}
         <motion.div
@@ -49,14 +49,21 @@ const UserCountdownTimer = () => {
         </motion.div>
 
         {/* Countdown Timer */}
-        <h2 className="mt-4 text-3xl font-bold tracking-wider text-gray-800">
+        <h2 className="mt-4 text-3xl font-bold tracking-wider ">
           {timeLeft.days}d : {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s
         </h2>
 
-        <p className="mt-2 text-sm text-gray-500">⏳ Time Left Until Event</p>
+        <p className="mt-2 text-sm ">⏳ Time Left Until Event</p>
       </motion.div>
     </div>
   );
 };
 
 export default UserCountdownTimer;
+
+
+
+
+
+
+

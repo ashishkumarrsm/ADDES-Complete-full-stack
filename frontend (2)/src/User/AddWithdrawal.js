@@ -114,7 +114,7 @@ export default function UserAddWithdrawal() {
       {message && <SuccessAlert message={message} />}
       {error && <ErrorAlert error={error} />}
       <Loader isLoading={loading}/>
-      <div className="m-3 p-4 bg-[#0b90c280]">
+      <div className="m-3 p-4 bg-gray-300/50">
         <div className="w-full mb-3 ">
           <div className="mb-2">
             <h3 className="text-lg font-semibold text-gray-200">
@@ -128,7 +128,7 @@ export default function UserAddWithdrawal() {
             <div>
             <div className="relative flex-grow">
               <input
-                className=" h-10 py-2 pl-8 text-base transition duration-200 border rounded shadow-sm text-gray-100 bg-[#147ea580] pr-11 placeholder:text-slate-100  border-slate-200 ease focus:outline-none focus:border-slate-400 hover:border-slate-100 focus:shadow-md"
+                className=" h-10 py-2 pl-8 text-base transition duration-200 border rounded shadow-sm text-gray-100 bg-gray-300/50 pr-11 placeholder:text-slate-100  border-slate-200 ease focus:outline-none focus:border-slate-400 hover:border-slate-100 focus:shadow-md"
                 placeholder="Search..."
               />
               <button
@@ -157,7 +157,7 @@ export default function UserAddWithdrawal() {
                 <button
                   type="button"
                   onClick={handleWithdrawalButton}
-                  className="block  px-3 py-2 sm:text-base text-sm font-semibold text-center text-white bg-[#125c7780] border border-white/50 rounded-sm shadow-sm hover:bg-[#2b6b8380] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="block  px-3 py-2 sm:text-base text-sm font-semibold text-center text-white bg-gray-300/50 border border-white/50 rounded-sm shadow-sm hover:bg-[#2b6b8380] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Withdrawal Working
                 </button>
@@ -165,13 +165,13 @@ export default function UserAddWithdrawal() {
                 <button
                   type="button"
                   onClick={handleWithdrawalROI}
-                  className="block px-3 py-2 sm:text-base text-sm font-semibold text-center text-white bg-[#125c7780] border border-white/50 rounded-sm shadow-sm hover:bg-[#2b6b8380] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="block px-3 py-2 sm:text-base text-sm font-semibold text-center text-white bg-gray-300/50 border border-white/50 rounded-sm shadow-sm hover:bg-[#2b6b8380] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Withdrawal ROI
                 </button>
                 <div>
                 <button
-                  className="px-3 py-[7px] text-2xl  border border-gray-400 rounded-sm text-gray-100 bg-[#125c7780]"
+                  className="px-3 py-[7px] text-2xl  border border-gray-400 rounded-sm text-gray-100 bg-gray-300/50"
                   onClick={() => setDetail(true)}
                 >
                   {" "}
@@ -190,7 +190,7 @@ export default function UserAddWithdrawal() {
             <Loader />
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-left border table-auto min-w-max text-gray-100 bg-black">
+              <table className="w-full text-left border table-auto min-w-max text-gray-100 bg-blue-500">
                 <thead className="text-gray-100 ">
                   <tr>
                     <th className="p-2 border-b md:p-4 border-slate-200 ">
@@ -260,7 +260,7 @@ export default function UserAddWithdrawal() {
                     <tr>
                       <td
                         colSpan={6}
-                        className="py-4 text-base font-medium text-center text-gray-100 whitespace-nowrap bg-[#4b1725ab]"
+                        className="py-4 text-base font-medium text-center text-gray-100 whitespace-nowrap bg-gray-400"
                       >
                         No data available
                       </td>

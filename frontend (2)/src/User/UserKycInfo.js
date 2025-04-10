@@ -53,7 +53,7 @@ const UserKycInfo = () => {
                 <td className="p-3 border">{item.qty}</td>
                 <td className="p-3 border">{item.amount}</td>
                 <td className="p-3 border">
-                  <img src={`https://pathtoprogresss.com/user/images//415759.jpeg`} alt="Slip" className="w-10 h-10 rounded-md shadow-md" />
+                  <img src={`https://img.freepik.com/free-vector/characters-scanning-qr-codes-their-phones_23-2148616039.jpg?uid=R90634854&ga=GA1.1.1673403856.1719407260&semt=ais_hybrid&w=740`} alt="Slip" className="w-10 h-10 rounded-md shadow-md" />
                 </td>
                 <td className="p-3 border">{item.date}</td>
                 <td className="p-3 border">

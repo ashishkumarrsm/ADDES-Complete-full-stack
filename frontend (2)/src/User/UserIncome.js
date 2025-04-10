@@ -331,7 +331,7 @@ export default function UserIncome() {
 
 
 
-    <div className="p-6 bg-blue-700 rounded-xl shadow-2xl">
+    <div className="p-6 bg-gray-300/50 rounded-xl shadow-2xl">
       <h2 className="mb-6 ml-2 text-2xl font-bold text-gray-100">Income Overview</h2>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         {projects.length > 0 ? (
@@ -346,11 +346,11 @@ export default function UserIncome() {
               <div className="flex flex-col justify-between h-full">
                 <div className="flex justify-between items-start">
                   <div className="flex-1">
-                    <div className={`${project.iconColor} w-12 h-12 rounded-lg flex items-center justify-center shadow-lg mb-4`}>
-                      <span className="text-lg font-semibold text-gray-900">{project.initials}</span>
+                    <div className={` bg-blue-500 text-white w-12 h-12 rounded-lg flex items-center justify-center shadow-lg mb-4`}>
+                      <span className="text-lg font-semibold ">{project.initials}</span>
                     </div>
-                    <h3 className="text-sm font-medium text-blue-400">{project.name}</h3>
-                    <p className="mt-2 text-2xl font-bold text-gray-900">
+                    <h3 className="text-sm font-medium text-blue-500">{project.name}</h3>
+                    <p className="mt-2 text-2xl font-bold text-white">
                       ${typeof project.members === 'number' ? project.members.toLocaleString() : project.members}
                     </p>
                   </div>
@@ -360,8 +360,8 @@ export default function UserIncome() {
                     to={project.href}
                     className={`inline-flex justify-between items-center px-4 py-2 w-full text-sm font-medium rounded-lg border border-white backdrop-blur-sm transition-colors duration-200 bg-white/10 hover:bg-white/20`}
                   >
-                    <span className="text-gray-900/90">Details</span>
-                    <FaArrowRight className="w-4 h-4 transition-transform transform text-gray-900/80 group-hover:translate-x-1" />
+                    <span className="text-white">Details</span>
+                    <FaArrowRight className="w-4 h-4 transition-transform transform text-white group-hover:translate-x-1" />
                   </Link>
                 </div>
               </div>

@@ -178,7 +178,7 @@ export default function UserTopup() {
       {message && <SuccessAlert message={message} />}
       {error && <ErrorAlert error={error} />}
       <Loader isLoading={loading}/>
-      <div className="p-4 m-3  bg-[#0b90c280]">
+      <div className="p-4 m-3  bg-gray-300/50">
         <div className="flex-col items-start justify-between w-full mb-3 lg:flex sm:flex md:flex-row md:items-center lg:pl-3">
           <div className="">
             <h3 className="text-lg  font-semibold text-slate-100">
@@ -192,7 +192,7 @@ export default function UserTopup() {
             <div className="relative flex max-w-full gap-3 md:gap-5 md:max-w-lg">
               <div className="relative ">
                 <input
-                     className="w-full h-10 py-2 pl-3 text-lg transition duration-200 border rounded shadow-sm text-gray-100 bg-[#1a8ab280] pr-11 placeholder:text-slate-100  border-slate-200 ease focus:outline-none focus:border-slate-400 hover:border-slate-100 focus:shadow-md"
+                     className="w-full h-10 py-2 pl-3 text-lg transition duration-200 border rounded shadow-sm text-gray-100 bg-gray-300/50 pr-11 placeholder:text-slate-100  border-slate-200 ease focus:outline-none focus:border-slate-400 hover:border-slate-100 focus:shadow-md"
                   placeholder="Search..."
                 />
                 <button
@@ -218,7 +218,7 @@ export default function UserTopup() {
               <button
                 type="button"
                 onClick={() => setOpenModel(true)}
-                className="px-3 py-2 text-base font-semibold text-center  rounded shadow-sm text-gray-100 bg-[#177b9f80] hover:bg-[#27596b80] hover:text-[#ffeded] focus:outline-none"
+                className="px-3 py-2 text-base font-semibold text-center  rounded shadow-sm text-gray-100 bg-gray-300/50 hover:bg-[#27596b80] hover:text-[#ffeded] focus:outline-none"
               >
                 Re-Top-Up 
               </button>
@@ -231,7 +231,7 @@ export default function UserTopup() {
             <Loader/>
           ) : (
             <table className="w-full min-w-full mt-2 text-left border table-auto text-gray-900">
-              <thead className="text-white bg-black">
+              <thead className="text-white bg-blue-500">
                 <tr>
                   <th className="p-4 text-base  font-normal border-b border-slate-200">
                     Topup To
@@ -247,7 +247,7 @@ export default function UserTopup() {
                   </th>
                 </tr>
               </thead>
-              <tbody className="text-gray-100 bg-[#01415859]">
+              <tbody className="text-gray-900 bg-white">
                 {singletopup?.length > 0 ? (
                   singletopup
                     ?.slice()
@@ -255,7 +255,7 @@ export default function UserTopup() {
                     .map((item, index) => (
                       <tr
                         key={index}
-                        className="text-gray-100 even:bg-[#7e66c5b3] even:text:white"
+                        className="text-gray-900 even:bg-gray-300/50 even:text-gray-900"
                       >
                         <td className="py-4 pl-4 pr-3 text-base font-medium whitespace-nowrap sm:pl-3">
                           {item?.userto_email}

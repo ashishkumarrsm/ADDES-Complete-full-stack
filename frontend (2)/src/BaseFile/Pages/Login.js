@@ -1,642 +1,233 @@
-import React, { useState, useEffect } from "react";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import ErrorAlert from "../comman/ErrorAlert";
-import SuccessAlret from "../comman/SuccessAlert";
-import { loginUser, clearErrors } from "../../redux/authSlice";
-import { useSelector, useDispatch } from "react-redux";
-import Spinner from "../comman/Spinner";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { Link } from "react-router-dom";
-import Header from "../../CoreFile/Header";
-import Footer from "../../CoreFile/Footer";
-import {
-  sendForgotLink,
-  clearMessage,
-  clearErrors as clrerr,
-} from "../../redux/forgotSlice";
+"use client"
+
+import { useState, useEffect } from "react"
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa"
+import { useNavigate } from "react-router-dom"
+import ErrorAlert from "../comman/ErrorAlert"
+import SuccessAlret from "../comman/SuccessAlert"
+import { loginUser, clearErrors } from "../../redux/authSlice"
+import { useSelector, useDispatch } from "react-redux"
+import Spinner from "../comman/Spinner"
+import { useFormik } from "formik"
+import * as Yup from "yup"
+import { Link } from "react-router-dom"
+import Header from "../../CoreFile/Header"
+import Footer from "../../CoreFile/Footer"
+import { sendForgotLink, clearMessage, clearErrors as clrerr } from "../../redux/forgotSlice"
+
 export default function Login() {
-  const [showPass, setShowPass] = useState(false);
-  const { loading, error, auth } = useSelector((state) => state.auth);
-  const {
-    loading: load,
-    message,
-    error: Err,
-  } = useSelector((state) => state.forgot);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const [showPass, setShowPass] = useState(false)
+  const { loading, error, auth } = useSelector((state) => state.auth)
+  const { loading: load, message, error: Err } = useSelector((state) => state.forgot)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const initialValues = {
     email: "",
     password: "",
-  };
+  }
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().required("Email or username is required"),
     password: Yup.string().required("Password is required"),
-  });
+  })
 
   const formik = useFormik({
     initialValues,
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-      dispatch(loginUser(values));
+      dispatch(loginUser(values))
     },
-  });
+  })
 
   useEffect(() => {
     if (error) {
       const timer = setTimeout(() => {
-        dispatch(clearErrors());
-      }, 2000);
-      return () => clearTimeout(timer);
+        dispatch(clearErrors())
+      }, 2000)
+      return () => clearTimeout(timer)
     }
     if (Err) {
       const timer = setTimeout(() => {
-        dispatch(clrerr());
-      }, 2000);
-      return () => clearTimeout(timer);
+        dispatch(clrerr())
+      }, 2000)
+      return () => clearTimeout(timer)
     }
     if (message) {
       const timer = setTimeout(() => {
-        dispatch(clearMessage());
-      }, 2000);
-      return () => clearTimeout(timer);
+        dispatch(clearMessage())
+      }, 2000)
+      return () => clearTimeout(timer)
     }
     if (auth) {
-      navigate(`/${auth?.role}/dashboard`);
+      navigate(`/${auth?.role}/dashboard`)
     }
-  }, [error, dispatch, auth, message, Err]);
+  }, [error, dispatch, auth, message, Err])
 
   const handleForgotPass = () => {
-    if (formik.values.email == "") {
-      alert("enter email");
+    if (formik.values.email === "") {
+      alert("Please enter your email")
+      return
     }
-    const forgotData = { email: formik.values.email, role: "user" };
-    console.log(forgotData);
-    dispatch(sendForgotLink(forgotData));
-  };
-  console.log(Err);
+    const forgotData = { email: formik.values.email, role: "user" }
+    dispatch(sendForgotLink(forgotData))
+  }
+
   return (
     <>
       <Header />
-      {/* <div className="flex relative justify-center items-center pt-20 pb-6 min-h-screen"> */}
-        {/* Background Image */}
-        <div
-        className="flex relative justify-end items-center pt-28 pb-8 min-h-screen bg-center bg-cover"
-        style={{
-          backgroundImage: `url(https://img.freepik.com/free-photo/3d-rendering-money-tree_23-2151575474.jpg?uid=R176823449&ga=GA1.1.1433286368.1718702777&semt=ais_hybrid)`,
-        }}
-      >
-        <div className="absolute inset-0 bg-black opacity-10"></div>
-
-        {/* Form Container */}
-        <div className="relative p-8 mx-3 w-full max-w-md text-gray-200 bg-opacity-10 rounded-lg shadow-lg bg-gray-800/50 sm:mx-0">
-          <div className="mx-auto w-full max-w-sm">
-            {/* Logo */}
-            <div className="flex justify-between items-center text-center">
-              <div>
-                <h2 className="mt-6 text-4xl font-bold tracking-tight leading-9 text-left">
-                  Login
-                </h2>
-                <p className="mt-2 text-center =">Have an account?</p>
+      <div className="min-h-screen  flex items-center justify-center p-4 bg-[url('https://img.freepik.com/premium-photo/businessman-analyzing-india-economy-data-futuristic-touchscreen-interface_641010-65186.jpg?uid=R90634854&ga=GA1.1.1673403856.1719407260&semt=ais_country_boost&w=740')] bg-no-repeat bg-cover bg-center">
+        <div className="w-full max-w-4xl flex flex-col md:flex-row overflow-hidden rounded-3xl shadow-2xl">
+          {/* Left side - Image */}
+          <div className="w-full md:w-1/2 text-purple-400/50 relative hidden md:block">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-purple-700 opacity-90"></div>
+            <div className="absolute inset-0 flex flex-col justify-center items-center p-12 text-white z-10">
+              <h1 className="text-4xl font-bold mb-6">Welcome Back</h1>
+              <p className="text-lg text-center mb-8">
+                Log in to your account to access your personalized dashboard and manage your investments.
+              </p>
+              <div className="w-24 h-24 rounded-full bg-white/20 flex items-center justify-center mb-8">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-12 w-12 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"
+                  />
+                </svg>
               </div>
-              
+              <div className="space-y-3 w-full">
+                <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden">
+                  <div className="w-2/3 h-full bg-white"></div>
+                </div>
+                <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden">
+                  <div className="w-1/2 h-full bg-white"></div>
+                </div>
+                <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden">
+                  <div className="w-3/4 h-full bg-white"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right side - Form */}
+          <div className="w-full md:w-1/2 bg-white/50 p-8 md:p-12">
+            <div className="mb-8">
+              <h2 className="text-3xl font-bold text-gray-900">Sign In</h2>
+              <p className="text-gray-800 mt-2">Please enter your credentials to continue</p>
             </div>
 
-            {/* Form */}
-            <div className="mt-8">
-              <form className="space-y-4" onSubmit={formik.handleSubmit}>
-                <div className="w-full">
-                  <label htmlFor="email" className="block text-base">
-                    Email or Username
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      id="email"
-                      name="email"
-                      value={formik.values.email}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      type="text"
-                      placeholder="Enter email......"
-                      required
-                      className="block relative px-4 py-2 w-full bg-opacity-10 rounded-full border border-gray-400 backdrop-blur-lg bg-gray-800/50 focus:outline-none sm:text-lg"
-                    />
-                  </div>
-                  {formik.touched.email && formik.errors.email && (
-                    <p className="mt-2 text-xs tracking-widest text-left text-red-500">
-                      {formik.errors.email}*
-                    </p>
-                  )}
-                </div>
+            <form className="space-y-6" onSubmit={formik.handleSubmit}>
+              {/* Email field */}
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-800 mb-1">
+                  Email or Username
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  type="text"
+                  placeholder="Enter your email or username"
+                  required
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200"
+                />
+                {formik.touched.email && formik.errors.email && (
+                  <p className="mt-1 text-sm text-red-600">{formik.errors.email}</p>
+                )}
+              </div>
 
-                <div className="relative w-full">
-                  <label
-                    htmlFor="password"
-                    className="block text-base"
-                  >
-                    Password
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      id="password"
-                      name="password"
-                      value={formik.values.password}
-                      onChange={formik.handleChange}
-                      onBlur={formik.handleBlur}
-                      type={showPass ? "text" : "password"}
-                      placeholder="Password...."
-                      required
-                      className="block relative px-4 py-2 w-full bg-opacity-10 rounded-full border border-gray-400 backdrop-blur-lg bg-gray-800/50 focus:outline-none sm:text-base"
-                    />
-                    <span
-                      onClick={() => setShowPass(!showPass)}
-                      className="absolute inset-y-0 right-2 top-[53px] transform -translate-y-1/2 pr-3 flex items-center text-white cursor-pointer"
-                    >
-                      {showPass ? (
-                        <FaRegEyeSlash className="text-gray-200" />
-                      ) : (
-                        <FaRegEye className="text-gray-200" />
-                      )}
-                    </span>
-                  </div>
-                  {formik.touched.password && formik.errors.password && (
-                    <p className="mt-2 text-xs tracking-widest text-left text-red-500">
-                      {formik.errors.password}*
-                    </p>
-                  )}
-                </div>
-
-                {error && <ErrorAlert error={error} />}
-                {Err && <ErrorAlert error={Err} />}
-                {message && <SuccessAlret message={message} />}
-                <div className="flex justify-between items-center">
-                  <label className="flex items-center">
-                    <input type="checkbox" className="rounded form-checkbox" />
-                    <span className="ml-2">Remember Me</span>
-                  </label>
-                  <span
-                    onClick={() => handleForgotPass()}
-                    className="text-base cursor-pointer"
-                  >
-                    Forgot Password
-                  </span>
-                </div>
-
-                <div>
+              {/* Password field */}
+              <div>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-800 mb-1">
+                  Password
+                </label>
+                <div className="relative">
+                  <input
+                    id="password"
+                    name="password"
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    type={showPass ? "text" : "password"}
+                    placeholder="Enter your password"
+                    required
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200"
+                  />
                   <button
-                    type="submit"
-                    className={`w-full uppercase tracking-widest justify-center rounded-full ${
-                      loading ? "bg-green-500" : "bg-green-500"
-                    } px-6 py-2 text-base font-medium leading-6 text-white shadow-sm hover:bg-green-600 focus:outline-none`}
+                    type="button"
+                    onClick={() => setShowPass(!showPass)}
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-800"
                   >
-                    {loading || load ? <Spinner /> : "Sign In"}
+                    {showPass ? <FaRegEyeSlash className="h-5 w-5" /> : <FaRegEye className="h-5 w-5" />}
                   </button>
                 </div>
-              </form>
+                {formik.touched.password && formik.errors.password && (
+                  <p className="mt-1 text-sm text-red-600">{formik.errors.password}</p>
+                )}
+              </div>
 
-              <p className="mt-4 text-base text-center">
-                Not a member?{" "}
-                <Link
-                  to="/registration"
-                  className="font-semibold leading-6 text-blue-500 hover:text-blue-600 hover:underline"
+              {/* Error and success messages */}
+              {error && <ErrorAlert error={error} />}
+              {Err && <ErrorAlert error={Err} />}
+              {message && <SuccessAlret message={message} />}
+
+              {/* Remember me and forgot password */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <input
+                    id="remember-me"
+                    name="remember-me"
+                    type="checkbox"
+                    className="h-4 w-4 text-teal-700 focus:ring-teal-500 border-gray-300 rounded"
+                  />
+                  <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-800">
+                    Remember me
+                  </label>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleForgotPass}
+                  className="text-sm font-medium text-teal-700 hover:text-teal-800"
                 >
-                  Register Here
+                  Forgot password?
+                </button>
+              </div>
+
+              {/* Submit button */}
+              <div>
+                <button
+                  type="submit"
+                  className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-all duration-200 font-medium"
+                  disabled={loading || load}
+                >
+                  {loading || load ? <Spinner /> : "Sign In"}
+                </button>
+              </div>
+            </form>
+
+            {/* Register link */}
+            <div className="mt-8 text-center">
+              <p className="text-gray-800">
+                Don't have an account?{" "}
+                <Link to="/registration" className="font-medium text-purple-400 hover:text-teal-800">
+                  Register Now
                 </Link>
               </p>
             </div>
           </div>
         </div>
-        </div>
-      {/* </div> */}
+      </div>
       <Footer />
     </>
-  );
+  )
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useState, useEffect } from "react";
-// import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-// import { useNavigate } from "react-router-dom";
-// import ErrorAlert from "../comman/ErrorAlert";
-// import { loginAdmin, clearErrors } from "../../redux/authSlice";
-// import { useSelector, useDispatch } from "react-redux";
-// import Spinner from "../comman/Spinner";
-// import { useFormik } from "formik";
-// import * as Yup from "yup";
-// import { Link } from "react-router-dom";
-// import Header from "../../CoreFile/Header";
-// import Footer from "../../CoreFile/Footer";
-
-// export default function Login() {
-//   const [showPass, setShowPass] = useState(false);
-//   const { loading, error, admin } = useSelector((state) => state.auth);
-//   const dispatch = useDispatch();
-//   const navigate = useNavigate();
-
-//   const initialValues = {
-//     email: "",
-//     password: "",
-//   };
-
-//   const validationSchema = Yup.object().shape({
-//     email: Yup.string().email("Incorrect email").required("Email is required"),
-//     password: Yup.string().required("Password is required"),
-//   });
-
-//   const formik = useFormik({
-//     initialValues,
-//     validationSchema: validationSchema,
-//     onSubmit: async (values) => {
-//       dispatch(loginAdmin(values));
-//     },
-//   });
-
-//   useEffect(() => {
-//     if (error) {
-//       const timer = setTimeout(() => {
-//         dispatch(clearErrors());
-//       }, 2000);
-//       return () => clearTimeout(timer);
-//     }
-//     if (admin) {
-//       navigate(`/admin/dashboard`);
-//     }
-//   }, [error, dispatch, admin, navigate]);
-
-//   return (
-//     <>
-//       <Header />
-
-//       <div
-//         className="flex justify-center items-center p-4 h-screen bg-center bg-cover"
-//         style={{
-//           backgroundImage:
-//             "url('https://img.freepik.com/free-photo/blue-low-poly-background_1048-13185.jpg')",
-//         }}
-//       >
-//         <div className="overflow-hidden w-full max-w-md bg-white bg-opacity-20 rounded-lg shadow-lg backdrop-filter backdrop-blur-lg">
-//           {/* Header with background image */}
-//           <div
-//             className="relative h-72 bg-center bg-cover hover:scale-105"
-//             style={{
-//               backgroundImage:
-//                 "url('https://img.freepik.com/free-vector/tablet-login-concept-illustration_114360-7873.jpg?uid=R90634854&ga=GA1.1.1673403856.1719407260&semt=ais_hybrid')",
-//               backgroundPosition: "center top",
-//             }}
-//           >
-//             <div className="flex absolute inset-0 justify-center items-center bg-black/30"></div>
-//           </div>
-
-//           {/* Form */}
-//           <div className="p-8">
-//             <form className="space-y-6" onSubmit={formik.handleSubmit}>
-//               <div className="space-y-2">
-//                 <label htmlFor="email" className="text-2xl text-white">
-//                   Email
-//                 </label>
-//                 <input
-//                   id="email"
-//                   name="email"
-//                   placeholder="Enter email"
-//                   value={formik.values.email}
-//                   onChange={formik.handleChange}
-//                   onBlur={formik.handleBlur}
-//                   className="p-2 w-full bg-white bg-opacity-20 rounded-lg shadow-lg backdrop-filter backdrop-blur-lg placeholder:text-gray-900"
-//                   required
-//                 />
-//                 {formik.touched.email && formik.errors.email && (
-//                   <p className="text-xs text-red-500">{formik.errors.email}</p>
-//                 )}
-//               </div>
-
-//               <div className="space-y-2">
-//                 <label htmlFor="password" className="text-2xl text-white">
-//                   Password
-//                 </label>
-//                 <div className="relative">
-//                   <input
-//                     id="password"
-//                     name="password"
-//                     type={showPass ? "text" : "password"}
-//                     placeholder="Enter password"
-//                     value={formik.values.password}
-//                     onChange={formik.handleChange}
-//                     onBlur={formik.handleBlur}
-//                     className="p-2 w-full bg-white bg-opacity-20 rounded-lg shadow-lg backdrop-filter backdrop-blur-lg placeholder:text-gray-900"
-//                     required
-//                   />
-//                   <span
-//                     onClick={() => setShowPass(!showPass)}
-//                     className="absolute inset-y-0 right-0 pr-3 text-gray-600 cursor-pointer"
-//                   >
-//                     {showPass ? (
-//                       <FaRegEyeSlash className="w-8 h-9 text-gray-900" />
-//                     ) : (
-//                       <FaRegEye className="w-8 h-9 text-gray-900" />
-//                     )}
-//                   </span>
-//                 </div>
-//                 {formik.touched.password && formik.errors.password && (
-//                   <p className="text-xs text-red-500">{formik.errors.password}</p>
-//                 )}
-//               </div>
-
-//               {error && <ErrorAlert error={error} />}
-
-//               <button
-//                 type="submit"
-//                 className={`py-2 w-full font-medium text-white bg-green-500 rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2`}
-//               >
-//                 {loading ? <Spinner /> : "Login"}
-//               </button>
-//             </form>
-
-//             <p className="mt-4 text-lg text-center text-white">
-//               Not a member?{" "}
-//               <Link
-//                 to="/"
-//                 className="font-semibold text-blue-500 hover:text-blue-500 hover:underline"
-//               >
-//                 User Login Here
-//               </Link>
-//             </p>
-//           </div>
-//         </div>
-//       </div>
-
-//       <Footer />
-//     </>
-//   );
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useState, useEffect } from "react";
-// import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-// import { useNavigate } from "react-router-dom";
-// import ErrorAlert from "../comman/ErrorAlert";
-// import SuccessAlert from "../comman/SuccessAlert"; // Corrected typo from SuccessAlret
-// import { loginAdmin, clearErrors } from "../../redux/authSlice";
-// import {
-//   sendForgotLink,
-//   clearMessage,
-//   clearErrors as clrerr,
-// } from "../../redux/forgotSlice";
-// import { useSelector, useDispatch } from "react-redux";
-// import Spinner from "../comman/Spinner";
-// import { useFormik } from "formik";
-// import * as Yup from "yup";
-// import { Link } from "react-router-dom";
-// import Header from "../../CoreFile/Header";
-// import Footer from "../../CoreFile/Footer";
-
-// export default function Login() {
-//   const [showPass, setShowPass] = useState(false);
-//   const { loading, error, admin } = useSelector((state) => state.auth);
-//   const {
-//     loading: load,
-//     message,
-//     error: Err,
-//   } = useSelector((state) => state.forgot);
-//   const dispatch = useDispatch();
-//   const navigate = useNavigate();
-
-//   // Form initial values
-//   const initialValues = {
-//     email: "",
-//     password: "",
-//   };
-
-//   // Validation schema (adapted to admin's email requirement)
-//   const validationSchema = Yup.object().shape({
-//     email: Yup.string().email("Incorrect email").required("Email is required"),
-//     password: Yup.string().required("Password is required"),
-//   });
-
-//   const formik = useFormik({
-//     initialValues,
-//     validationSchema,
-//     onSubmit: async (values) => {
-//       dispatch(loginAdmin(values));
-//     },
-//   });
-
-//   // Forgot Password handler
-//   const handleForgotPass = () => {
-//     if (formik.values.email === "") {
-//       formik.setErrors({ email: "Email is required for password recovery" });
-//       return;
-//     }
-//     const forgotData = { email: formik.values.email, role: "admin" };
-//     dispatch(sendForgotLink(forgotData));
-//   };
-
-//   // Effect to handle errors, messages, and navigation
-//   useEffect(() => {
-//     if (error) {
-//       const timer = setTimeout(() => {
-//         dispatch(clearErrors());
-//       }, 2000);
-//       return () => clearTimeout(timer);
-//     }
-//     if (Err) {
-//       const timer = setTimeout(() => {
-//         dispatch(clrerr());
-//       }, 2000);
-//       return () => clearTimeout(timer);
-//     }
-//     if (message) {
-//       const timer = setTimeout(() => {
-//         dispatch(clearMessage());
-//       }, 2000);
-//       return () => clearTimeout(timer);
-//     }
-//     if (admin) {
-//       navigate(`/admin/dashboard`);
-//     }
-//   }, [error, Err, message, dispatch, admin, navigate]);
-
-//   return (
-//     <>
-//       <Header />
-
-//       <div
-//         className="flex justify-center items-center p-4 h-screen bg-center bg-cover"
-//         style={{
-//           backgroundImage:
-//             "url('https://img.freepik.com/free-photo/blue-low-poly-background_1048-13185.jpg')",
-//         }}
-//       >
-//         <div className="overflow-hidden w-full max-w-md bg-white bg-opacity-20 rounded-lg shadow-lg backdrop-filter backdrop-blur-lg">
-//           {/* Header with background image */}
-//           <div
-//             className="relative h-72 bg-center bg-cover hover:scale-105"
-//             style={{
-//               backgroundImage:
-//                 "url('https://img.freepik.com/free-vector/tablet-login-concept-illustration_114360-7873.jpg?uid=R90634854&ga=GA1.1.1673403856.1719407260&semt=ais_hybrid')",
-//               backgroundPosition: "center top",
-//             }}
-//           >
-//             <div className="flex absolute inset-0 justify-center items-center bg-black/30"></div>
-//           </div>
-
-//           {/* Form */}
-//           <div className="p-8">
-//             <form className="space-y-6" onSubmit={formik.handleSubmit}>
-//               <div className="space-y-2">
-//                 <label htmlFor="email" className="text-2xl text-white">
-//                   Email
-//                 </label>
-//                 <input
-//                   id="email"
-//                   name="email"
-//                   placeholder="Enter email"
-//                   value={formik.values.email}
-//                   onChange={formik.handleChange}
-//                   onBlur={formik.handleBlur}
-//                   type="text"
-//                   className="p-2 w-full bg-white bg-opacity-20 rounded-lg shadow-lg backdrop-filter backdrop-blur-lg placeholder:text-gray-900"
-//                   required
-//                 />
-//                 {formik.touched.email && formik.errors.email && (
-//                   <p className="text-xs text-red-500">{formik.errors.email}</p>
-//                 )}
-//               </div>
-
-//               <div className="space-y-2">
-//                 <label htmlFor="password" className="text-2xl text-white">
-//                   Password
-//                 </label>
-//                 <div className="relative">
-//                   <input
-//                     id="password"
-//                     name="password"
-//                     type={showPass ? "text" : "password"}
-//                     placeholder="Enter password"
-//                     value={formik.values.password}
-//                     onChange={formik.handleChange}
-//                     onBlur={formik.handleBlur}
-//                     className="p-2 w-full bg-white bg-opacity-20 rounded-lg shadow-lg backdrop-filter backdrop-blur-lg placeholder:text-gray-900"
-//                     required
-//                   />
-//                   <span
-//                     onClick={() => setShowPass(!showPass)}
-//                     className="absolute inset-y-0 right-0 pr-3 text-gray-600 cursor-pointer"
-//                   >
-//                     {showPass ? (
-//                       <FaRegEyeSlash className="w-8 h-9 text-gray-900" />
-//                     ) : (
-//                       <FaRegEye className="w-8 h-9 text-gray-900" />
-//                     )}
-//                   </span>
-//                 </div>
-//                 {formik.touched.password && formik.errors.password && (
-//                   <p className="text-xs text-red-500">
-//                     {formik.errors.password}
-//                   </p>
-//                 )}
-//               </div>
-
-//               {/* Remember Me and Forgot Password */}
-//               <div className="flex justify-between items-center">
-//                 <label className="flex items-center text-white">
-//                   <input
-//                     type="checkbox"
-//                     className="text-green-500 rounded form-checkbox"
-//                   />
-//                   <span className="ml-2">Remember Me</span>
-//                 </label>
-//                 <span
-//                   onClick={() => handleForgotPass()}
-//                   className="text-sm text-white cursor-pointer hover:underline"
-//                 >
-//                   Forgot Password?
-//                 </span>
-//               </div>
-
-//               {/* Alerts for errors and success messages */}
-//               {error && <ErrorAlert error={error} />}
-//               {Err && <ErrorAlert error={Err} />}
-//               {message && <SuccessAlert message={message} />}
-
-//               <button
-//                 type="submit"
-//                 className="py-2 w-full font-medium text-white bg-green-500 rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-//               >
-//                 {loading || load ? <Spinner /> : "Sign In"}
-//               </button>
-//             </form>
-// {/* 
-//             <p className="mt-4 text-lg text-center text-white">
-//               Not a member?{" "}
-//               <Link
-//                 to="/"
-//                 className="font-semibold text-blue-500 hover:text-blue-600 hover:underline"
-//               >
-//                 User Login Here
-//               </Link>
-//             </p> */}
-
-//             <p className="mt-4 text-lg text-center text-white">
-//                 Not a member?{" "}
-//                 <Link
-//                   to="/registration"
-//                   className="font-semibold leading-6 text-blue-500 hover:text-blue-600 hover:underline"
-//                 >
-//                   Register Here
-//                 </Link>
-//               </p>
-//           </div>
-//         </div>
-//       </div>
-
-//       <Footer />
-//     </>
-//   );
-// }

@@ -162,7 +162,7 @@ const MyTransactions = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl font-bold text-gray-800">My Transactions</h1>
+        <h1 className="text-2xl font-bold text-white">My Transactions</h1>
         <button
           onClick={() => setIsModalOpen(true)}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -173,7 +173,7 @@ const MyTransactions = () => {
 
       {/* Success/Error Messages */}
       {success && (
-        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+        <div className="bg-blue-500 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
           {message}
         </div>
       )}
@@ -185,13 +185,13 @@ const MyTransactions = () => {
 
       {/* Filters */}
       <div className="bg-white shadow-md rounded-lg p-6 mb-8">
-        <h2 className="text-lg font-semibold mb-4 text-gray-700">
+        <h2 className="text-lg font-semibold mb-4 text-gray-900">
           Filter Transactions
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           {/* Transaction Type Filter */}
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2">
+            <label className="block text-gray-900 text-sm font-bold mb-2">
               Transaction Type
             </label>
             <select
@@ -212,7 +212,7 @@ const MyTransactions = () => {
 
           {/* Source Filter */}
           <div>
-            <label className="block text-gray-700 text-sm font-bold mb-2">
+            <label className="block text-gray-900 text-sm font-bold mb-2">
               Source
             </label>
             <select
@@ -233,7 +233,7 @@ const MyTransactions = () => {
             name="status"
             value={filters.status}
             onChange={handleFilterChange}
-            className="shadow border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="shadow border rounded w-full  px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">All Statuses</option>
             <option value="pending">Pending</option>
@@ -246,7 +246,7 @@ const MyTransactions = () => {
 
       {/* Search Bar */}
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2">
+        <label className="block text-white text-sm font-bold mb-2">
           Search
         </label>
         <input
@@ -260,7 +260,7 @@ const MyTransactions = () => {
       </div>
 
       {/* Filter Buttons */}
-      <div className="flex space-x-2">
+      <div className="flex space-x-2 ">
         <button
           onClick={applyFilters}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -275,11 +275,11 @@ const MyTransactions = () => {
         </button>
       </div>
 
-      <div className="bg-white shadow-md rounded-lg overflow-hidden">
+      <div className="bg-white shadow-md rounded-lg overflow-hidden mt-4">
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white">
             <thead>
-              <tr className="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+              <tr className="bg-blue-500 text-white uppercase text-sm leading-normal">
                 <th className="py-3 px-6 text-left">ID</th>
                 <th className="py-3 px-6 text-left">Amount</th>
                 <th className="py-3 px-6 text-left">Type</th>
